@@ -270,7 +270,7 @@ static unsigned short const CCNEscapeKey = 53;
     NSView *newContentView = [(NSViewController *)viewController view];
     newContentView.alphaValue = 0;
 
-    if (self.allowsVibrancy) {
+	if (self.allowsVibrancy) {
         NSVisualEffectView *effectView = [[NSVisualEffectView alloc] initWithFrame:newContentView.frame];
         effectView.blendingMode = NSVisualEffectBlendingModeBehindWindow;
         [effectView addSubview:newContentView];
@@ -281,6 +281,13 @@ static unsigned short const CCNEscapeKey = 53;
         [view addSubview:newContentView];
         self.window.contentView = view;
     }
+
+    // Ensure correct placement of the view controller's view inside the container that we create.
+	newContentView.translatesAutoresizingMaskIntoConstraints = NO;
+	[newContentView.leftAnchor constraintEqualToAnchor:self.window.contentView.leftAnchor].active = YES;
+	[newContentView.rightAnchor constraintEqualToAnchor:self.window.contentView.rightAnchor].active = YES;
+	[newContentView.topAnchor constraintEqualToAnchor:self.window.contentView.topAnchor].active = YES;
+	[newContentView.bottomAnchor constraintEqualToAnchor:self.window.contentView.bottomAnchor].active = YES;
 
     __weak typeof(self) wSelf = self;
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
