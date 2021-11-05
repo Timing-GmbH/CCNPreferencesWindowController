@@ -165,6 +165,9 @@ static unsigned short const CCNEscapeKey = 53;
 - (void)showPreferencesWindow {
     self.window.alphaValue = 0.0;
     [self showWindow:self];
+	if (@available(macOS 11.0, *)) {
+		self.window.toolbarStyle = NSWindowToolbarStylePreference;
+	}
     [self.window makeKeyAndOrderFront:self];
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
 
