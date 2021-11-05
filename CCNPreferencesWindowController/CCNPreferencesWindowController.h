@@ -117,6 +117,10 @@
  */
 @property (assign, nonatomic) BOOL allowsVibrancy;
 
+/**
+ The preference panes in this window.
+ */
+@property (strong, readonly) NSMutableOrderedSet *viewControllers;
 
 #pragma mark - Managing Preference View Controllers
 /** @name Managing Preference View Controllers */
